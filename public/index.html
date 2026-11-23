@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EMET Evidence — open-source framework for auditable evidence synthesis</title>
+<meta name="description" content="EMET Evidence is an open-source framework for autonomous, reproducible and auditable evidence synthesis: LLM agents orchestrating deterministic tools to produce systematic reviews.">
+<link rel="canonical" href="https://emet-evidence.com/">
+<link rel="alternate" hreflang="en" href="https://emet-evidence.com/">
+<link rel="alternate" hreflang="fr" href="https://emet-evidence.com/fr/">
+<link rel="alternate" hreflang="x-default" href="https://emet-evidence.com/">
+<meta property="og:title" content="EMET Evidence">
+<meta property="og:description" content="Open-source framework for autonomous, reproducible and auditable evidence synthesis.">
+<meta property="og:url" content="https://emet-evidence.com/">
+<meta property="og:type" content="website">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/"><img class="mark" src="/favicon.svg" alt="">EMET Evidence</a>
+    <nav class="top">
+      <a href="#principles">Principles</a>
+      <a href="#pipeline">Pipeline</a>
+      <a href="#status">Status</a>
+      <a href="https://github.com/emet-evidence/emet-evidence">GitHub</a>
+      <a class="lang" href="/fr/" hreflang="fr" lang="fr">FR</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<div class="wrap hero">
+  <div class="eyebrow">Open source · v0.8 development</div>
+  <h1>Autonomous, reproducible and auditable evidence synthesis.</h1>
+  <p class="lead">EMET Evidence orchestrates LLM agents and deterministic tools to produce systematic reviews. Every number shown to a reader is traceable to a source passage, every exclusion to a decision, and every critical check must pass before publication.</p>
+  <p class="lead"><span class="hebrew">EMET (אמת) means truth in Hebrew.</span></p>
+  <div class="cta">
+    <a class="btn primary" href="https://github.com/emet-evidence/emet-evidence">View on GitHub</a>
+    <a class="btn ghost" href="https://github.com/emet-evidence/emet-evidence/blob/main/methodology/METHODOLOGY.md">Read the methodology</a>
+  </div>
+</div>
+
+<section id="principles">
+  <div class="wrap">
+    <h2>Principles</h2>
+    <p class="sub">The model is used for scientific judgement. Everything else — calculations, counts, deduplication, rendering, checks — is scripted.</p>
+    <div class="grid">
+      <div class="card"><h3>Full agentic, not full LLM</h3><p>Agents orchestrate deterministic tools and may abstain from publishing.</p></div>
+      <div class="card"><h3>Extract once, render everywhere</h3><p>Structured, verified, sourced data feeds every table, chart and report without new model calls.</p></div>
+      <div class="card"><h3>Evidence before narrative</h3><p>The text derives from verified data; it is never the source of truth.</p></div>
+      <div class="card"><h3>Independent verification</h3><p>Reviewers work in separate contexts; initial decisions are preserved before adjudication.</p></div>
+      <div class="card"><h3>Fail closed</h3><p>A failed critical check or an exhausted budget blocks publication. Limits are documented.</p></div>
+      <div class="card"><h3>No silent exclusions</h3><p>Missing, not assessed, not applicable and uncertain are kept distinct. No manufactured precision.</p></div>
+      <div class="card"><h3>Open by default</h3><p>Code, prompts, schemas, rules, configurations, tests and shareable data are published — never copyrighted full texts, secrets or personal data.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="pipeline">
+  <div class="wrap">
+    <h2>From protocol to open data</h2>
+    <p class="sub">Each stage has its own agent module, its own checks and its own run log. The orchestrator tells you the next step and the command or module that runs it.</p>
+    <ol class="pipeline">
+      <li><strong>Protocol</strong><span>PICO, criteria, outcomes, committed before the first query</span></li>
+      <li><strong>Search</strong><span>Multiple queries, citation chasing, retraction checks</span></li>
+      <li><strong>Dual screening</strong><span>Two independent reviewers, then adjudication</span></li>
+      <li><strong>Extraction</strong><span>Data with provenance and verbatim quotes</span></li>
+      <li><strong>Risk of bias</strong><span>Tool by study design, domain judgements</span></li>
+      <li><strong>GRADE</strong><span>Certainty of evidence by outcome</span></li>
+      <li><strong>Declarations of interest</strong><span>Funding and links of interest, linked to sources</span></li>
+      <li><strong>Writing</strong><span>Page, tables and summary sheet rendered from data</span></li>
+      <li><strong>Claim verification</strong><span>Each claim checked against its source passage</span></li>
+      <li><strong>Open data</strong><span>Shareable data package; sources referenced by identifier and hash</span></li>
+    </ol>
+    <p class="note">Review-depth profiles (rapid, standard, and more) set how much effort each stage receives.</p>
+  </div>
+</section>
+
+<section id="status">
+  <div class="wrap">
+    <div class="status">
+      <h2>Honest status</h2>
+      <p>EMET Evidence is at version 0.8 (development). The engine runs the reviews of its first real-world application, <a href="https://shoulder-surgery.eu">shoulder-surgery.eu</a>.</p>
+      <ul>
+        <li>Internal checks pass. <strong>No external scientific validation has been performed yet</strong>; benchmarking against Cochrane reviews is planned for v1.1.</li>
+        <li>Agreement between agents is not accuracy, and open-source code is not clinical validation.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="roadmap">
+  <div class="wrap">
+    <h2 style="margin-bottom:24px">Roadmap</h2>
+    <div class="roadmap">
+      <div class="now"><b>v0.8</b><span>Structured &amp; transparent</span></div>
+      <div><b>v0.9</b><span>Modular &amp; agentic</span></div>
+      <div><b>v1.0</b><span>Quantitative synthesis: deterministic statistics, multiverse analysis</span></div>
+      <div><b>v1.1</b><span>Scientific validation: benchmark against Cochrane</span></div>
+      <div><b>v2.0</b><span>Living evidence</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="start">
+  <div class="wrap">
+    <h2>Get started</h2>
+    <p class="sub">Python ≥ 3.9, standard library only. The repository ships a real example workspace.</p>
+<pre><code>git clone https://github.com/emet-evidence/emet-evidence && cd emet-evidence
+python3 -m unittest discover -s tests
+EMET_WORKSPACE=examples/shoulder-surgery python3 -m emet.orchestrate status immobilisation</code></pre>
+  </div>
+</section>
+
+<section id="licences">
+  <div class="wrap grid">
+    <div class="card"><h3>Licences</h3><p>Code under Apache 2.0. Methodology, documentation and data under CC BY 4.0. Third-party full texts and abstracts are never redistributed.</p></div>
+    <div class="card"><h3>Citing</h3><p>See <a href="https://github.com/emet-evidence/emet-evidence/blob/main/CITATION.cff">CITATION.cff</a>. Methodological lead: Dr Mikaël Chelli.</p></div>
+    <div class="card"><h3>Contributing</h3><p>Issues and pull requests are welcome. Report errors in published reviews through the <a href="https://github.com/emet-evidence/emet-evidence/issues">issue tracker</a>.</p></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© Mikaël Chelli and EMET Evidence contributors · Content under CC BY 4.0</span>
+    <span><a href="https://github.com/emet-evidence/emet-evidence">GitHub</a> · <a href="/fr/" hreflang="fr" lang="fr">Français</a></span>
+  </div>
+</footer>
+</body>
+</html>
