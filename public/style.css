@@ -52,6 +52,12 @@ nav.top .lang { border: 1px solid var(--line); padding: 3px 10px; border-radius:
   mask-image: linear-gradient(to bottom, #000 45%, transparent 100%);
 }
 html { overflow-x: clip; }
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) 400px; gap: 48px; align-items: center; }
+.hero-anim { margin: 0; }
+.hero-anim img {
+  display: block; width: 100%; max-width: 400px; height: auto; border-radius: 16px; border: 1px solid var(--line);
+  box-shadow: 0 30px 60px -30px rgba(139, 92, 246, 0.55), 0 0 0 1px rgba(167, 139, 250, 0.08);
+}
 .hero .eyebrow {
   display: inline-block; color: var(--accent); font-weight: 600; font-size: 0.82em; letter-spacing: 0.08em; text-transform: uppercase;
   background: var(--accent-soft); border: 1px solid rgba(167, 139, 250, 0.3); padding: 5px 12px; border-radius: 999px;
@@ -179,6 +185,8 @@ footer { border-top: 1px solid var(--line); padding: 32px 0 48px; color: var(--m
 footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; }
 
 @media (max-width: 900px) {
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .hero-anim { justify-self: center; width: 100%; max-width: 400px; min-width: 0; }
   .grid.principles { grid-template-columns: repeat(2, 1fr); }
   .pairs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .pairs .agent::after { display: none; }
