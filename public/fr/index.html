@@ -24,7 +24,7 @@
     <a class="brand" href="/fr/"><img class="mark" src="/favicon.svg" alt="">EMET Evidence</a>
     <nav class="top">
       <a href="#principes">Principes</a>
-      <a href="#pipeline">Étapes</a>
+      <a href="#pipeline">Agents</a>
       <a href="#statut">Statut</a>
       <a href="https://github.com/emet-evidence/emet-evidence">GitHub</a>
       <a class="lang" href="/" hreflang="en" lang="en">EN</a>
@@ -62,20 +62,67 @@
 <section id="pipeline">
   <div class="wrap">
     <h2>Du protocole aux données ouvertes</h2>
-    <p class="sub">Chaque étape a son module d'agent, ses contrôles et son journal d'exécution. L'orchestrateur indique l'étape suivante et la commande ou le module qui l'exécute.</p>
-    <ol class="pipeline">
-      <li><strong>Protocole</strong><span>PICO, critères, critères de jugement, enregistré avant la première requête</span></li>
-      <li><strong>Recherche</strong><span>Requêtes multiples, suivi des citations, contrôle des rétractations</span></li>
-      <li><strong>Double sélection</strong><span>Deux relecteurs indépendants, puis arbitrage</span></li>
-      <li><strong>Extraction</strong><span>Données avec provenance et citations verbatim</span></li>
-      <li><strong>Risque de biais</strong><span>Outil adapté au type d'étude, jugement par domaine</span></li>
-      <li><strong>GRADE</strong><span>Niveau de certitude par critère de jugement</span></li>
-      <li><strong>Déclarations d'intérêts</strong><span>Financements et liens d'intérêts, avec lien vers la source</span></li>
-      <li><strong>Rédaction</strong><span>Page, tableaux et fiche de synthèse générés à partir des données</span></li>
-      <li><strong>Vérification des affirmations</strong><span>Chaque affirmation confrontée au passage de sa source</span></li>
-      <li><strong>Données ouvertes</strong><span>Jeu de données partageable ; sources référencées par identifiant et empreinte</span></li>
-    </ol>
-    <p class="note">Des profils de profondeur (rapide, standard, etc.) fixent l'effort consacré à chaque étape.</p>
+    <p class="sub">Une revue est conduite par une petite équipe d'agents spécialisés. Chacun a une seule tâche et son propre module, travaille dans un contexte séparé et ne voit jamais la décision de son binôme. Tout ce qui peut être calculé est confié à des scripts.</p>
+
+    <div class="crew">
+      <article class="agent lead" style="--c:#a78bfa">
+        <div class="who"><span class="av"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><circle cx="4.5" cy="5" r="2"/><circle cx="19.5" cy="5" r="2"/><circle cx="4.5" cy="19" r="2"/><circle cx="19.5" cy="19" r="2"/><path d="M6 6.5l3.8 3.6M18 6.5l-3.8 3.6M6 17.5l3.8-3.6M18 17.5l-3.8-3.6"/></svg></span><div><h3>Orchestrateur</h3><code>main session</code></div></div>
+        <p>Conduit la revue étape par étape à partir de <code>pipeline.json</code>. Rédige le protocole et l'enregistre avant la première requête, lance les recherches, prépare les lots, lance les agents, contrôle leurs sorties et enregistre. Rédige la page à partir des données vérifiées. <b>Ne fait jamais lui-même le travail d'un relecteur.</b></p>
+      </article>
+
+      <div class="link"><span>distribue les lots</span></div>
+
+      <div class="pairs">
+        <article class="agent pair" style="--c:#60a5fa">
+          <div class="who"><span class="av"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18l-7 8v6l-4-2v-4L3 5z"/></svg></span><div><h3>Sélectionneurs</h3><code>screener · A ∥ B</code></div></div>
+          <p>Titres, résumés, puis textes intégraux, selon les critères du protocole. En cas de doute, inclure.</p>
+        </article>
+        <article class="agent pair" style="--c:#e879f9">
+          <div class="who"><span class="av"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8l-5-5z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></span><div><h3>Extracteurs</h3><code>extractor · A ∥ B</code></div></div>
+          <p>Données des études, estimations d'effet et risque de biais, chaque valeur appuyée par une citation verbatim.</p>
+        </article>
+        <article class="agent pair" style="--c:#2dd4bf">
+          <div class="who"><span class="av"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20v-4M10 20v-8M15 20v-12M20 20V4"/></svg></span><div><h3>Évaluateurs GRADE</h3><code>grader · A ∥ B</code></div></div>
+          <p>Niveau de certitude GRADE pour chaque critère de jugement, domaine par domaine.</p>
+        </article>
+        <article class="agent pair" style="--c:#fbbf24">
+          <div class="who"><span class="av"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1"/></svg></span><div><h3>Relecteurs des déclarations</h3><code>interests · A ∥ B</code></div></div>
+          <p>Financements et liens d'intérêts des études et des auteurs, chacun avec un lien vers sa source.</p>
+        </article>
+      </div>
+
+      <div class="link"><span>accord mesuré par script · désaccords uniquement</span></div>
+
+      <article class="agent lead" style="--c:#f472b6">
+        <div class="who"><span class="av"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M7 21h10M4 7h16M4 7l-2.5 6a3 3 0 005 0L4 7zM20 7l-2.5 6a3 3 0 005 0L20 7z"/></svg></span><div><h3>Arbitre</h3><code>arbiter</code></div></div>
+        <p>Ne voit que les éléments en désaccord, les deux décisions et la source. Tranche selon le protocole et la source, jamais à la majorité ; si la source ne permet pas de trancher, retient l'option prudente. Les décisions brutes de A et B ne sont jamais modifiées.</p>
+      </article>
+
+      <div class="link"><span>données finales → page</span></div>
+
+      <div class="flow">
+        <article class="agent" style="--c:#818cf8">
+          <div class="who"><span class="av"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21M8 10.5l2 2 3.5-3.5"/></svg></span><div><h3>Vérificateur</h3><code>verifier</code></div></div>
+          <p>N'a pas rédigé la page et n'en connaît pas les conclusions. Confronte chaque affirmation au passage qu'elle cite. Les verdicts bloquants vont à l'arbitre ; les affirmations corrigées sont revérifiées.</p>
+        </article>
+        <article class="agent" style="--c:#fb7185">
+          <div class="who"><span class="av"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg></span><div><h3>Contrôle de publication</h3><code>validate · script</code></div></div>
+          <p>Schéma, provenance et contrôles critiques. Tout échec bloque la publication.</p>
+        </article>
+        <article class="agent" style="--c:#34d399">
+          <div class="who"><span class="av"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5.5" rx="8" ry="2.5"/><path d="M4 5.5v13c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-13M4 12c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5"/></svg></span><div><h3>Données ouvertes</h3><code>review package</code></div></div>
+          <p>Page, tableaux, fiche de synthèse et jeu de données partageable ; sources référencées par identifiant et empreinte.</p>
+        </article>
+      </div>
+
+      <div class="tools">
+        <div class="tools-head"><span class="av"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17l6-5-6-5M12 19h8"/></svg></span><div><h3>Outils déterministes</h3><code>python · sans appel au modèle</code></div></div>
+        <ul>
+          <li>recherche et rétractations</li><li>dédoublonnage</li><li>préfiltre</li><li>kappa et accord</li><li>diagramme PRISMA</li><li>contrôle des citations</li><li>rendu</li><li>validation</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">Des profils de profondeur (rapide, standard, etc.) fixent le modèle attribué à chaque rôle et la part du travail vérifiée en double.</p>
   </div>
 </section>
 

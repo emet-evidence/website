@@ -23,7 +23,7 @@
     <a class="brand" href="/"><img class="mark" src="/favicon.svg" alt="">EMET Evidence</a>
     <nav class="top">
       <a href="#principles">Principles</a>
-      <a href="#pipeline">Pipeline</a>
+      <a href="#pipeline">Agents</a>
       <a href="#status">Status</a>
       <a href="https://github.com/emet-evidence/emet-evidence">GitHub</a>
       <a class="lang" href="/fr/" hreflang="fr" lang="fr">FR</a>
@@ -61,20 +61,67 @@
 <section id="pipeline">
   <div class="wrap">
     <h2>From protocol to open data</h2>
-    <p class="sub">Each stage has its own agent module, its own checks and its own run log. The orchestrator tells you the next step and the command or module that runs it.</p>
-    <ol class="pipeline">
-      <li><strong>Protocol</strong><span>PICO, criteria, outcomes, committed before the first query</span></li>
-      <li><strong>Search</strong><span>Multiple queries, citation chasing, retraction checks</span></li>
-      <li><strong>Dual screening</strong><span>Two independent reviewers, then adjudication</span></li>
-      <li><strong>Extraction</strong><span>Data with provenance and verbatim quotes</span></li>
-      <li><strong>Risk of bias</strong><span>Tool by study design, domain judgements</span></li>
-      <li><strong>GRADE</strong><span>Certainty of evidence by outcome</span></li>
-      <li><strong>Declarations of interest</strong><span>Funding and links of interest, linked to sources</span></li>
-      <li><strong>Writing</strong><span>Page, tables and summary sheet rendered from data</span></li>
-      <li><strong>Claim verification</strong><span>Each claim checked against its source passage</span></li>
-      <li><strong>Open data</strong><span>Shareable data package; sources referenced by identifier and hash</span></li>
-    </ol>
-    <p class="note">Review-depth profiles (rapid, standard, and more) set how much effort each stage receives.</p>
+    <p class="sub">A review is run by a small crew of specialised agents. Each has one job and its own module, works in a separate context and never sees its twin's decision. Everything that can be computed is left to scripts.</p>
+
+    <div class="crew">
+      <article class="agent lead" style="--c:#a78bfa">
+        <div class="who"><span class="av"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><circle cx="4.5" cy="5" r="2"/><circle cx="19.5" cy="5" r="2"/><circle cx="4.5" cy="19" r="2"/><circle cx="19.5" cy="19" r="2"/><path d="M6 6.5l3.8 3.6M18 6.5l-3.8 3.6M6 17.5l3.8-3.6M18 17.5l-3.8-3.6"/></svg></span><div><h3>Orchestrator</h3><code>main session</code></div></div>
+        <p>Conducts the review step by step from <code>pipeline.json</code>. Writes the protocol and commits it before the first query, runs the searches, prepares batches, launches the agents, checks their outputs and commits. Writes the page from verified data. <b>Never does a reviewer's work itself.</b></p>
+      </article>
+
+      <div class="link"><span>dispatches batches</span></div>
+
+      <div class="pairs">
+        <article class="agent pair" style="--c:#60a5fa">
+          <div class="who"><span class="av"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18l-7 8v6l-4-2v-4L3 5z"/></svg></span><div><h3>Screeners</h3><code>screener · A ∥ B</code></div></div>
+          <p>Titles, abstracts, then full texts, against the protocol criteria. In doubt, include.</p>
+        </article>
+        <article class="agent pair" style="--c:#e879f9">
+          <div class="who"><span class="av"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8l-5-5z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></span><div><h3>Extractors</h3><code>extractor · A ∥ B</code></div></div>
+          <p>Study data, effect estimates and risk of bias, each value backed by a verbatim quote.</p>
+        </article>
+        <article class="agent pair" style="--c:#2dd4bf">
+          <div class="who"><span class="av"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20v-4M10 20v-8M15 20v-12M20 20V4"/></svg></span><div><h3>Graders</h3><code>grader · A ∥ B</code></div></div>
+          <p>GRADE certainty of evidence for each outcome, domain by domain.</p>
+        </article>
+        <article class="agent pair" style="--c:#fbbf24">
+          <div class="who"><span class="av"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1"/></svg></span><div><h3>Declarations reviewers</h3><code>interests · A ∥ B</code></div></div>
+          <p>Funding and links of interest of studies and authors, each linked to its source.</p>
+        </article>
+      </div>
+
+      <div class="link"><span>agreement measured by script · disagreements only</span></div>
+
+      <article class="agent lead" style="--c:#f472b6">
+        <div class="who"><span class="av"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M7 21h10M4 7h16M4 7l-2.5 6a3 3 0 005 0L4 7zM20 7l-2.5 6a3 3 0 005 0L20 7z"/></svg></span><div><h3>Arbiter</h3><code>arbiter</code></div></div>
+        <p>Sees only the disputed items, the two decisions and the source. Decides by the protocol and the source, never by majority; when the source does not allow a decision, takes the cautious option. The raw decisions of A and B are never overwritten.</p>
+      </article>
+
+      <div class="link"><span>final data → page</span></div>
+
+      <div class="flow">
+        <article class="agent" style="--c:#818cf8">
+          <div class="who"><span class="av"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21M8 10.5l2 2 3.5-3.5"/></svg></span><div><h3>Verifier</h3><code>verifier</code></div></div>
+          <p>Did not write the page and does not know its conclusions. Checks each claim against the passage it cites. Blocking verdicts go to the arbiter; corrected claims are re-verified.</p>
+        </article>
+        <article class="agent" style="--c:#fb7185">
+          <div class="who"><span class="av"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg></span><div><h3>Publication gate</h3><code>validate · script</code></div></div>
+          <p>Schema, provenance and critical checks. Any failure blocks publication.</p>
+        </article>
+        <article class="agent" style="--c:#34d399">
+          <div class="who"><span class="av"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5.5" rx="8" ry="2.5"/><path d="M4 5.5v13c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-13M4 12c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5"/></svg></span><div><h3>Open data</h3><code>review package</code></div></div>
+          <p>Page, tables, summary sheet and a shareable data package; sources referenced by identifier and hash.</p>
+        </article>
+      </div>
+
+      <div class="tools">
+        <div class="tools-head"><span class="av"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17l6-5-6-5M12 19h8"/></svg></span><div><h3>Deterministic tools</h3><code>python · no model call</code></div></div>
+        <ul>
+          <li>search &amp; retraction checks</li><li>deduplication</li><li>prefilter</li><li>kappa &amp; agreement</li><li>PRISMA flow</li><li>quote checks</li><li>rendering</li><li>validation</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">Review-depth profiles (rapid, standard, and more) set which model plays each role and how much of the work is double-checked.</p>
   </div>
 </section>
 
